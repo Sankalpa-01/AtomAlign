@@ -1,8 +1,16 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { SheetStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+export const SheetStatus = {
+  DRAFT: "DRAFT",
+  PENDING_APPROVAL: "PENDING_APPROVAL",
+  APPROVED: "APPROVED",
+  LOCKED: "LOCKED",
+  RETURNED: "RETURNED",
+} as const;
+
+type SheetStatus = (typeof SheetStatus)[keyof typeof SheetStatus];
 
 export async function approveGoalSheet(sheetId: string, managerId: string) {
   try {
