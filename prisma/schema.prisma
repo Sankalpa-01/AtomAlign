@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 1. Roles & Users (Org Hierarchy)
+enum Role {
+  EMPLOYEE
+  MANAGER
+  ADMIN
+}
+
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  name          String
+  role          Role        @default(EMPLOYEE)
+  
+  // Self-relation: Employees have a Manager (who is also a User)
+  managerId     String?
+  manager       User?       @relation("ManagerToEmployee", fields: [managerId], references: [id])
+  teamMembers   User[]      @relation("ManagerToEmployee")
+
+  goalSheets    GoalSheet[]
+  checkInsDone  CheckIn[]   @relation("ManagerCheckIns")
+}
+
+// 2. Goal Sheets (The container for a specific cycle's goals)
+enum SheetStatus {
+  DRAFT
+  PENDING_APPROVAL
+  LOCKED
+}
+
+model GoalSheet {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  cyclePeriod String      @default("Q1-2026") // e.g., Q1, Q2
+  status      SheetStatus @default(DRAFT)
+  goals       Goal[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+// 3. Individual Goals (The Core Requirements)
+enum UomType {
+  NUMERIC_MIN // Higher is better (e.g., Revenue)
+  NUMERIC_MAX // Lower is better (e.g., Cost)
+  TIMELINE    // Date-based
+  ZERO        // Zero = Success
+}
+
+enum GoalStatus {
+  NOT_STARTED
+  ON_TRACK
+  COMPLETED
+}
+
+model Goal {
+  id                String     @id @default(cuid())
+  goalSheetId       String
+  goalSheet         GoalSheet  @relation(fields: [goalSheetId], references: [id])
+  
+  title             String
+  thrustArea        String
+  description       String?
+  
+  // Metrics & Weights
+  uomType           UomType
+  weightage         Int        // Must validate to 10% min on frontend/backend
+  plannedTarget     String     // Stored as string to handle both numbers and dates
+  actualAchievement String?    
+  
+  status            GoalStatus @default(NOT_STARTED)
+  isSharedKPI       Boolean    @default(false) // For Admin pushed goals
+
+  checkIns          CheckIn[]
+  auditLogs         AuditLog[]
+
+  isShared          Boolean   @default(false)
+}
+
+// 4. Phase 2: Check-ins & Feedback
+model CheckIn {
+  id          String   @id @default(cuid())
+  goalId      String
+  goal        Goal     @relation(fields: [goalId], references: [id])
+  managerId   String
+  manager     User     @relation("ManagerCheckIns", fields: [managerId], references: [id])
+  comment     String
+  createdAt   DateTime @default(now())
+}
+
+// 5. Governance: Audit Trail for locked goals
+model AuditLog {
+  id          String   @id @default(cuid())
+  goalId      String
+  goal        Goal     @relation(fields: [goalId], references: [id])
+  changedBy   String   // The ID of the User who made the change
+  action      String   // e.g., "Updated weightage from 15% to 20%"
+  timestamp   DateTime @default(now())
+}
