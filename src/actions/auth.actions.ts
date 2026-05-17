@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
-import { Role } from "@prisma/client";
+type Role = "EMPLOYEE" | "MANAGER" | "ADMIN";
 
 // MOCK LOGIN: Finds the user by email and sets a session cookie
 export async function loginUser(email: string) {
