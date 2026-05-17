@@ -1,8 +1,8 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { UomType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+type UomType = "NUMERIC_MIN" | "NUMERIC_MAX" | "TIMELINE" | "ZERO";
 
 export async function pushDepartmentKPI(managerId: string, formData: FormData) {
   try {
