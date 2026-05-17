@@ -1,4 +1,4 @@
-# AtomAlign — In-House Goal Setting & Tracking Portal
+# AtomAlign - In-House Goal Setting & Tracking Portal
 
 AtomAlign is a robust, full-stack enterprise performance management solution engineered to streamline the full lifecycle of corporate and individual goals. Built specifically for the **AtomQuest Hackathon 1.0**, this portal eliminates fragmented tracking sheets and email review cycles by providing absolute transparency, automated evaluation metrics, and full audit-compliance for employees, managers, and HR personnel.
 
