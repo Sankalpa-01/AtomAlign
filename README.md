@@ -5,7 +5,7 @@ AtomAlign is a robust, full-stack enterprise performance management solution eng
 ---
 
 ##  Live Demo & Repository
-* **Live Deployment URL:** `https://atom-align-4zojxiwxk-sankalpa-01s-projects.vercel.app/`
+* **Live Deployment URL:** `https://atom-align-two.vercel.app/`
 * **GitHub Repository:** `https://github.com/Sankalpa-01/AtomAlign`
 
 ---
