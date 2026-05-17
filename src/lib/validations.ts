@@ -1,9 +1,5 @@
 import * as z from "zod";
 
-// ====================================================================
-// PHASE 1: GOAL CREATION SCHEMAS
-// ====================================================================
-
 // Define the exact Unit of Measurement types from your database
 export const UomTypeEnum = z.enum(["NUMERIC_MIN", "NUMERIC_MAX", "TIMELINE", "ZERO"]);
 
@@ -45,11 +41,6 @@ export const GoalSheetSchema = z.object({
       path: ["root"], // This attaches the error to the whole array, not just one field
     }),
 });
-
-
-// ====================================================================
-// PHASE 2: ACHIEVEMENT TRACKING SCHEMAS
-// ====================================================================
 
 // Define the exact Progress Statuses from your database
 export const GoalStatusEnum = z.enum(["NOT_STARTED", "ON_TRACK", "COMPLETED"]);

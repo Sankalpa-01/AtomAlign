@@ -1,10 +1,5 @@
 import { ReactNode } from "react";
 
-// ====================================================================
-// 1. DATABASE PAYLOAD TYPES (Relationships included)
-// Use these when fetching nested data from NeonDB via Server Actions
-// ====================================================================
-
 // A User that includes their assigned L1 Manager and their Team Members
 // Prisma types may not be exported in some client versions — fall back to a
 // loose payload type to avoid build errors while keeping typing intent.
@@ -16,10 +11,6 @@ export type GoalSheetWithGoals = any;
 // A Goal that includes its Check-ins (with the Manager's details) and Audit Logs
 export type GoalWithDetails = any;
 
-// ====================================================================
-// 2. FORM SUBMISSION TYPES (For React Hook Form & Server Actions)
-// These define the shape of the data moving from the Client to the Server
-// ====================================================================
 
 // The individual goal entry before it hits the database
 export interface CreateGoalInput {
@@ -46,10 +37,6 @@ export interface SubmitCheckInInput {
   status: "NOT_STARTED" | "ON_TRACK" | "COMPLETED";
   actualAchievement: string;
 }
-
-// ====================================================================
-// 3. UI & COMPONENT TYPES
-// ====================================================================
 
 // For building a dynamic Sidebar that only shows links based on the user's role
 export interface NavItem {
