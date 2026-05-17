@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AtomAlign — In-House Goal Setting & Tracking Portal
 
-## Getting Started
+AtomAlign is a robust, full-stack enterprise performance management solution engineered to streamline the full lifecycle of corporate and individual goals. Built specifically for the **AtomQuest Hackathon 1.0**, this portal eliminates fragmented tracking sheets and email review cycles by providing absolute transparency, automated evaluation metrics, and full audit-compliance for employees, managers, and HR personnel.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Live Demo & Repository
+* **Live Deployment URL:** `https://atom-align-4zojxiwxk-sankalpa-01s-projects.vercel.app/`
+* **GitHub Repository:** `https://github.com/Sankalpa-01/AtomAlign`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔑 Demo Access Credentials
+To facilitate seamless evaluation across all three platform personas, use the following preset credentials:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Role | Email Address | Password | Key Capabilities to Test |
+| :--- | :--- | :--- | :--- |
+| **Employee** | `employee@company.com` | `password123` | Draft goals, log quarterly achievements, view locks |
+| **Manager (L1)** | `manager@company.com` | `password123` | Approve sheets, return for rework, push shared KPIs |
+| **HR / Admin** | `admin@company.com` | `password123` | System audit trail, force unlock, export achievement CSV |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Features Implemented (Adherence to BRD)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🟢 Phase 1 — Goal Creation & Validation (Must-Have)
+* **Dynamic Goal Sheet Form:** Employees can seamlessly construct structured goal sheets grouped by corporate **Thrust Areas**.
+* **Flexible Unit of Measurement (UoM):** Supports multi-type tracking constraints: *Numeric (Min/Max)*, *Timeline (Date-based)*, and *Zero-based targets*.
+* **Strict Real-Time Business Rule Validations:**
+  * Enforces that the total weightage across all goals equals exactly **100%**.
+  * Rejects submissions if any individual goal has a weightage below **10%**.
+  * Restricts maximum goal creation to a maximum limit of **8 goals** per employee.
+* **Manager Review Workflow:** L1 Managers can instantly review submissions, **Approve** and freeze sheets, or **Return for Rework** to reopen editing privileges.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🟡 Phase 2 — Achievement Tracking & Score Computation (Must-Have)
+* **Immutable Progression Tracking:** Once approved, targets are strictly locked down against employee tampering.
+* **Progress Logging Module:** Employees can log actual achievement updates against active windows.
+* **Automated Performance Scoring Engine:** Built-in calculation formulas matching the BRD rules:
+  * **Numeric Min (Higher is better):** $\text{Achievement} \div \text{Target}$
+  * **Numeric Max (Lower is better):** $\text{Target} \div \text{Achievement}$
+  * **Timeline:** 100% if completed on or before the target date, else 0%.
+  * **Zero-Incident Targets:** 100% if actual is 0, else 0%.
 
-## Deploy on Vercel
+### 🔥 Hackathon Bonus Features Implemented (Section 5)
+* **Top-Down Shared KPI Functionality (Section 2.1 & 5):** Managers can push a unified departmental KPI simultaneously to all direct reports. The title and targets remain strictly read-only for recipients, while they retain the flexibility to balance out individual weightages.
+* **Immutable System Audit Trail (Section 4):** Complete accountability log ledger tracking all post-lock admin overrides and workflow transitions—capturing who performed the modification, what was impacted, and the precise timestamp.
+* **Exportable Governance Reporting (Section 4):** Admins can download a well-formed CSV Achievement Report aggregating planned vs. actual progress company-wide.
+* **Real-Time Analytical Dashboard (Section 5.4):** Dynamic, database-driven summary metrics calculating user submission rates and total completion statistics directly from live server aggregations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Technical Architecture
+
+### Tech Stack
+* **Framework:** Next.js 14+ (App Router, Server Actions, Server Components)
+* **Database:** Serverless PostgreSQL (Hosted on Neon)
+* **ORM:** Prisma Client
+* **Styling & UI:** Tailwind CSS, shadcn/ui, Lucide Icons
+* **Form & Data Validation:** React Hook Form, Zod Schema Validation
+* **Hosting Platform:** Vercel (Optimized Serverless Runtime environment)
+
+### Architecture Highlights & Cost Optimization
+* **Type-Safe Injections:** Leveraged TypeScript union mapping alongside compile-time type guards to manage server workflows with strict zero-runtime exception vulnerabilities.
+* **Serverless Scale-to-Zero:** Chosen database infrastructure automatically scales computing limits to absolute zero when idle, minimizing corporate infrastructure bills during off-peak windows.
+* **Serverless Backend Consolidation:** Eliminated heavy secondary API servers by using Next.js Server Actions, keeping network requests rapid, secure, and performant.
+
+---
+
+## 📦 Local Development Setup
+
+To run this project locally, follow these instructions:
+
+1. **Clone the repository:**
+   ```bash
+   git clone PASTE_YOUR_GITHUB_URL_HERE
+   cd atomquest-portal
+   ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+3. **Set up environment variables**
+   Create a .env file in the root directory and append your connection details:
+   ```bash
+   DATABASE_URL="postgresql://username:password@your-neon-host.postgres.neon.tech/neondb?sslmode=require"
+   ```
+4. **Initialize Database Schemas**
+   ```bash
+   npx prisma db push
+   npx prisma generate
+   ```
+5. **Fire up the local environment**
+   ```bash
+   npm run dev
+   ```
+
+## 
