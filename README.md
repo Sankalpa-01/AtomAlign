@@ -4,13 +4,13 @@ AtomAlign is a robust, full-stack enterprise performance management solution eng
 
 ---
 
-## 🚀 Live Demo & Repository
+##  Live Demo & Repository
 * **Live Deployment URL:** `https://atom-align-4zojxiwxk-sankalpa-01s-projects.vercel.app/`
 * **GitHub Repository:** `https://github.com/Sankalpa-01/AtomAlign`
 
 ---
 
-## 🔑 Demo Access Credentials
+##  Demo Access Credentials
 To facilitate seamless evaluation across all three platform personas, use the following preset credentials:
 
 | Role | Email Address | Password | Key Capabilities to Test |
@@ -21,7 +21,7 @@ To facilitate seamless evaluation across all three platform personas, use the fo
 
 ---
 
-## ✨ Features Implemented (Adherence to BRD)
+##  Features Implemented (Adherence to BRD)
 
 ### 🟢 Phase 1 — Goal Creation & Validation (Must-Have)
 * **Dynamic Goal Sheet Form:** Employees can seamlessly construct structured goal sheets grouped by corporate **Thrust Areas**.
@@ -32,7 +32,7 @@ To facilitate seamless evaluation across all three platform personas, use the fo
   * Restricts maximum goal creation to a maximum limit of **8 goals** per employee.
 * **Manager Review Workflow:** L1 Managers can instantly review submissions, **Approve** and freeze sheets, or **Return for Rework** to reopen editing privileges.
 
-### 🟡 Phase 2 — Achievement Tracking & Score Computation (Must-Have)
+###  Phase 2 — Achievement Tracking & Score Computation (Must-Have)
 * **Immutable Progression Tracking:** Once approved, targets are strictly locked down against employee tampering.
 * **Progress Logging Module:** Employees can log actual achievement updates against active windows.
 * **Automated Performance Scoring Engine:** Built-in calculation formulas matching the BRD rules:
@@ -41,7 +41,7 @@ To facilitate seamless evaluation across all three platform personas, use the fo
   * **Timeline:** 100% if completed on or before the target date, else 0%.
   * **Zero-Incident Targets:** 100% if actual is 0, else 0%.
 
-### 🔥 Hackathon Bonus Features Implemented (Section 5)
+###  Hackathon Bonus Features Implemented (Section 5)
 * **Top-Down Shared KPI Functionality (Section 2.1 & 5):** Managers can push a unified departmental KPI simultaneously to all direct reports. The title and targets remain strictly read-only for recipients, while they retain the flexibility to balance out individual weightages.
 * **Immutable System Audit Trail (Section 4):** Complete accountability log ledger tracking all post-lock admin overrides and workflow transitions—capturing who performed the modification, what was impacted, and the precise timestamp.
 * **Exportable Governance Reporting (Section 4):** Admins can download a well-formed CSV Achievement Report aggregating planned vs. actual progress company-wide.
@@ -49,7 +49,7 @@ To facilitate seamless evaluation across all three platform personas, use the fo
 
 ---
 
-## 🛠️ Technical Architecture
+##  Technical Architecture
 
 ### Tech Stack
 * **Framework:** Next.js 14+ (App Router, Server Actions, Server Components)
@@ -66,7 +66,7 @@ To facilitate seamless evaluation across all three platform personas, use the fo
 
 ---
 
-## 📦 Local Development Setup
+##  Local Development Setup
 
 To run this project locally, follow these instructions:
 
@@ -79,7 +79,7 @@ To run this project locally, follow these instructions:
    ```bash
    npm install
    ```
-3. **Set up environment variables**
+3. **Set up environment variables: **
    Create a .env file in the root directory and append your connection details:
    ```bash
    DATABASE_URL="postgresql://username:password@your-neon-host.postgres.neon.tech/neondb?sslmode=require"
